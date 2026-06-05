@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Placement Revision Tracker</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f9;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+}
+
+.day{
+    background:white;
+    margin:15px 0;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+label{
+    display:block;
+    padding:6px;
+    font-size:16px;
+}
+
+.progress-container{
+    width:100%;
+    background:#ddd;
+    height:30px;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:#4CAF50;
+    transition:0.3s;
+}
+
+#percent{
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    margin:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🚀 Placement Revision Tracker</h1>
+
+<div id="percent">0% Completed</div>
+
+<div class="progress-container">
+<div class="progress-bar" id="bar"></div>
+</div>
+
+<div class="day">
+<h2>📅 Day 1</h2>
+<label><input type="checkbox" class="task"> DBMS.pdf</label>
+<label><input type="checkbox" class="task"> DBMS Interview Questions.pdf</label>
+<label><input type="checkbox" class="task"> MySQL.pdf</label>
+<label><input type="checkbox" class="task"> DSA.pdf</label>
+</div>
+
+<div class="day">
+<h2>📅 Day 2</h2>
+<label><input type="checkbox" class="task"> OOPS.pdf</label>
+<label><input type="checkbox" class="task"> Operating System Interview.pdf</label>
+<label><input type="checkbox" class="task"> Python.pdf</label>
+<label><input type="checkbox" class="task"> Infosys Codings.docx</label>
+</div>
+
+<div class="day">
+<h2>📅 Day 3</h2>
+<label><input type="checkbox" class="task"> Computer Networks Interview.pdf</label>
+<label><input type="checkbox" class="task"> Java.pdf</label>
+<label><input type="checkbox" class="task"> DSA with Python.pdf</label>
+<label><input type="checkbox" class="task"> Top Interview 150.docx</label>
+</div>
+
+<div class="day">
+<h2>📅 Day 4</h2>
+<label><input type="checkbox" class="task"> HTML.pdf</label>
+<label><input type="checkbox" class="task"> CSS.pdf</label>
+<label><input type="checkbox" class="task"> React.pdf</label>
+<label><input type="checkbox" class="task"> MERN.pdf</label>
+</div>
+
+<div class="day">
+<h2>📅 Day 5</h2>
+<label><input type="checkbox" class="task"> Node.js</label>
+<label><input type="checkbox" class="task"> MongoDB.pdf</label>
+<label><input type="checkbox" class="task"> MERN Stack Notes.pdf</label>
+<label><input type="checkbox" class="task"> Full Stack Developer Interview Questions.pdf</label>
+</div>
+
+<div class="day">
+<h2>📅 Day 6</h2>
+<label><input type="checkbox" class="task"> Git.pdf</label>
+<label><input type="checkbox" class="task"> Docker.pdf</label>
+<label><input type="checkbox" class="task"> Angular.pdf</label>
+<label><input type="checkbox" class="task"> Cognizant.docx</label>
+<label><input type="checkbox" class="task"> Superpacc Codings.docx</label>
+</div>
+
+<div class="day">
+<h2>📅 Day 7</h2>
+<label><input type="checkbox" class="task"> HR for Freshers.pdf</label>
+<label><input type="checkbox" class="task"> Self Introduction.docx</label>
+<label><input type="checkbox" class="task"> PET Prep.docx</label>
+<label><input type="checkbox" class="task"> Mock Interview</label>
+<label><input type="checkbox" class="task"> Revision</label>
+</div>
+
+<script>
+
+const tasks=document.querySelectorAll('.task');
+
+tasks.forEach((task,index)=>{
+
+let saved=localStorage.getItem("task"+index);
+
+if(saved==="true"){
+task.checked=true;
+}
+
+task.addEventListener("change",()=>{
+
+localStorage.setItem("task"+index,task.checked);
+
+updateProgress();
+
+});
+});
+
+function updateProgress(){
+
+let checked=document.querySelectorAll('.task:checked').length;
+let total=document.querySelectorAll('.task').length;
+
+let percent=Math.round((checked/total)*100);
+
+document.getElementById("bar").style.width=percent+"%";
+
+document.getElementById("percent").innerText=
+percent+"% Completed ("+checked+"/"+total+")";
+
+}
+
+updateProgress();
+
+</script>
+
+</body>
+</html>
+
